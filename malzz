@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suka Maju - Teknologi Masa Depan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        /* Futuristic Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(102, 126, 234, 0.8); }
+        }
+        
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-glow { animation: glow 2s ease-in-out infinite; }
+        .animate-slide-in-left { animation: slideInLeft 0.8s ease-out; }
+        .animate-slide-in-right { animation: slideInRight 0.8s ease-out; }
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out; }
+        .animate-pulse-custom { animation: pulse 2s ease-in-out infinite; }
+        
+        /* Futuristic Background */
+        .futuristic-bg {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #2d1b69 50%, #667eea 75%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .futuristic-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        /* Glass Effect */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Neon Effects */
+        .neon-text {
+            text-shadow: 0 0 10px rgba(102, 126, 234, 0.8), 0 0 20px rgba(102, 126, 234, 0.6), 0 0 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .neon-border {
+            border: 2px solid transparent;
+            background: linear-gradient(45deg, #667eea, #764ba2) border-box;
+            border-radius: 12px;
+        }
+        
+        /* Slide System */
+        .slide-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: translateX(100%);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+        }
+        
+        .slide.active {
+            transform: translateX(0);
+        }
+        
+        .slide.prev {
+            transform: translateX(-100%);
+        }
+        
+        /* Navigation */
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(15, 15, 35, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-item {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item:hover {
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+        
+        .nav-item.active {
+            color: #667eea;
+        }
+        
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+        
+        /* Cards */
+        .futuristic-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .futuristic-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .futuristic-card:hover::before {
+            left: 100%;
+        }
+        
+        .futuristic-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+        
+        /* Buttons */
+        .futuristic-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            padding: 12px 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .futuristic-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.4s ease;
+        }
+        
+        .futuristic-btn:hover::before {
+            left: 100%;
+        }
+        
+        .futuristic-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* Progress Indicators */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1001;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.8);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                padding: 10px;
+            }
+            
+            .nav-item {
+                font-size: 14px;
+                margin: 0 8px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 20%"></div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav class="nav-menu">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold neon-text">⚡ Suka Maju</h1>
+                </div>
+                <div class="flex space-x-8">
+                    <div class="nav-item active" onclick="goToSlide(0)">Home</div>
+                    <div class="nav-item" onclick="goToSlide(1)">Layanan</div>
+                    <div class="nav-item" onclick="goToSlide(2)">Produk</div>
+                    <div class="nav-item" onclick="goToSlide(3)">Profil</div>
+                    <div class="nav-item" onclick="goToSlide(4)">Pemesanan</div>
+                    <div class="nav-item" onclick="goToSlide(5)">Kontak</div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Slide Container -->
+    <div class="slide-container">
+        <!-- Slide 1: Home -->
+        <div class="slide active futuristic-bg" id="slide-0">
+            <div class="min-h-screen flex items-center justify-center relative">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <div class="animate-fade-in-up">
+                        <h1 class="text-6xl md:text-8xl font-bold mb-6 neon-text animate-pulse-custom">
+                            Masa Depan Teknologi
+                        </h1>
+                        <p class="text-xl md:text-2xl mb-8 opacity-90 animate-slide-in-left">
+                            Revolusi Digital Dimulai Dari Sini
+                        </p>
+                        <div class="flex flex-col md:flex-row gap-6 justify-center items-center animate-slide-in-right">
+                            <button onclick="goToSlide(2)" class="futuristic-btn text-lg px-8 py-4">
+                                Jelajahi Produk
+                            </button>
+                            <button onclick="goToSlide(1)" class="futuristic-btn text-lg px-8 py-4">
+                                Lihat Layanan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Floating Elements -->
+                <div class="absolute top-20 left-10 animate-float">
+                    <div class="w-20 h-20 rounded-full glass-effect flex items-center justify-center text-3xl">
+                        🚀
+                    </div>
+                </div>
+                <div class="absolute top-40 right-20 animate-float" style="animation-delay: -2s;">
+                    <div class="w-16 h-16 rounded-full glass-effect flex items-center justify-center text-2xl">
+                        ⚡
+                    </div>
+                </div>
+                <div class="absolute bottom-40 left-20 animate-float" style="animation-delay: -4s;">
+                    <div class="w-24 h-24 rounded-full glass-effect flex items-center justify-center text-4xl">
+                        🌟
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Layanan -->
+        <div class="slide futuristic-bg" id="slide-1">
+            <div class="min-h-screen pt-20 pb-10">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16 animate-fade-in-up">
+                        <h2 class="text-5xl font-bold mb-6 neon-text">Layanan Kami</h2>
+                        <p class="text-xl opacity-90">Solusi teknologi terdepan untuk kebutuhan Anda</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Service 1 -->
+                        <div class="futuristic-card p-8 animate-fade-in-up" style="animation-delay: 0.1s;">
+                            <div class="text-5xl mb-6 text-center animate-float">🔧</div>
+                            <h3 class="text-2xl font-bold mb-4 text-center">Instalasi & Setup</h3>
+                            <p class="text-gray-300 mb-6 text-center">Instalasi profesional semua perangkat elektronik dengan garansi kualitas terbaik</p>
+                            <ul class="space-y-2 text-sm text-gray-400">
+                                <li>✓ Setup perangkat komputer</li>
+                                <li>✓ Instalasi sistem keamanan</li>
+                                <li>✓ Konfigurasi jaringan</li>
+                                <li>✓ Garansi 1 tahun</li>
+                            </ul>
+                        </div>
+
+                        <!-- Service 2 -->
+                        <div class="futuristic-card p-8 animate-fade-in-up" style="animation-delay: 0.2s;">
+                            <div class="text-5xl mb-6 text-center animate-float" style="animation-delay: -1s;">🛠️</div>
+                            <h3 class="text-2xl font-bold mb-4 text-center">Maintenance & Repair</h3>
+                            <p class="text-gray-300 mb-6 text-center">Layanan perawatan dan perbaikan perangkat elektronik dengan teknisi berpengalaman</p>
+                            <ul class="space-y-2 text-sm text-gray-400">
+                                <li>✓ Diagnosa gratis</li>
+                                <li>✓ Perbaikan cepat</li>
+                                <li>✓ Spare part original</li>
+                                <li>✓ Layanan panggilan</li>
+                            </ul>
+                        </div>
+
+                        <!-- Service 3 -->
+                        <div class="futuristic-card p-8 animate-fade-in-up" style="animation-delay: 0.3s;">
+                            <div class="text-5xl mb-6 text-center animate-float" style="animation-delay: -2s;">📡</div>
+                            <h3 class="text-2xl font-bold mb-4 text-center">Konsultasi Teknologi</h3>
+                            <p class="text-gray-300 mb-6 text-center">Konsultasi ahli untuk memilih teknologi yang tepat sesuai kebutuhan dan budget</p>
+                            <ul class="space-y-2 text-sm text-gray-400">
+                                <li>✓ Analisis kebutuhan</li>
+                                <li>✓ Rekomendasi produk</li>
+                                <li>✓ Perencanaan budget</li>
+                                <li>✓ Follow-up support</li>
+                            </ul>
+                        </div>
+
+                        <!-- Service 4 -->
+                        <div class="futuristic-card p-8 animate-fade-in-up" style="animation-delay: 0.4s;">
+                            <div class="text-5xl mb-6 text-center animate-float" style="animation-delay: -3s;">🔒</div>
+                            <h3 class="text-2xl font-bold mb-4 text-center">Keamanan Digital</h3>
+                            <p class="text-gray-300 mb-6 text-center">Solusi keamanan digital lengkap untuk melindungi data dan privasi Anda</p>
+                            <ul class="space-y-2 text-sm text-gray-400">
+                                <li>✓ Antivirus premium</li>
+                                <li>✓ Firewall setup</li>
+                                <li>✓ Backup otomatis</li>
+                                <li>✓ Monitoring 24/7</li>
+                            </ul>
+                        </div>
+
+                        <!-- Service 5 -->
+                        <div class="futuristic-card p-8 animate-fade-in-up" style="animation-delay: 0.5s;">
+                            <div class="text-5xl mb-6 text-center animate-float" style="animation-delay: -4s;">🌐</div>
+                            <h3 class="text-2xl font-bold mb-4 text-center">Smart Home Solution</h3>
+                            <p class="text-gray-300 mb-6 text-center">Transformasi rumah Anda menjadi smart home dengan teknologi IoT terdepan</p>
+                            <ul class="space-y-2 text-sm text-gray-400">
+                                <li>✓ Otomasi pencahayaan</li>
+                                <li>✓ Kontrol suhu otomatis</li>
+                                <li>✓ Sistem keamanan pintar</li>
+                                <li>✓ Voice control</li>
+                            </ul>
+                        </div>
+
+                        <!-- Service 6 -->
+                        <div class="futuristic-card p-8 animate-fade-in-up" style="animation-delay: 0.6s;">
+                            <div class="text-5xl mb-6 text-center animate-float" style="animation-delay: -5s;">📱</div>
+                            <h3 class="text-2xl font-bold mb-4 text-center">Mobile Solutions</h3>
+                            <p class="text-gray-300 mb-6 text-center">Solusi mobile lengkap untuk bisnis dan personal dengan teknologi terkini</p>
+                            <ul class="space-y-2 text-sm text-gray-400">
+                                <li>✓ App development</li>
+                                <li>✓ Mobile security</li>
+                                <li>✓ Cloud integration</li>
+                                <li>✓ Cross-platform support</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Produk -->
+        <div class="slide futuristic-bg" id="slide-2">
+            <div class="min-h-screen pt-20 pb-10">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16 animate-fade-in-up">
+                        <h2 class="text-5xl font-bold mb-6 neon-text">Produk Unggulan</h2>
+                        <p class="text-xl opacity-90">Teknologi terdepan untuk masa depan yang lebih baik</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Product 1 -->
+                        <div class="futuristic-card overflow-hidden animate-fade-in-up" style="animation-delay: 0.1s;">
+                            <div class="h-48 relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=300&fit=crop" alt="Smartphone AI Pro" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                                <div class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold animate-pulse">
+                                    HOT
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Smartphone AI Pro</h3>
+                                <p class="text-gray-400 mb-4 text-sm">Smartphone dengan AI processor terdepan, kamera 108MP, dan battery 5000mAh</p>
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="text-2xl font-bold text-blue-400">Rp 12.500.000</span>
+                                    <span class="text-sm text-gray-500 line-through">Rp 15.000.000</span>
+                                </div>
+                                <button onclick="selectProduct('Smartphone AI Pro', 12500000)" class="futuristic-btn w-full">
+                                    Pesan Sekarang
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product 2 -->
+                        <div class="futuristic-card overflow-hidden animate-fade-in-up" style="animation-delay: 0.2s;">
+                            <div class="h-48 relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&h=300&fit=crop" alt="Gaming Laptop Ultra" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                                <div class="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-bold animate-pulse">
+                                    NEW
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Gaming Laptop Ultra</h3>
+                                <p class="text-gray-400 mb-4 text-sm">Laptop gaming dengan RTX 4080, Intel i9, RAM 32GB, dan cooling system canggih</p>
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="text-2xl font-bold text-blue-400">Rp 25.000.000</span>
+                                    <span class="text-sm text-gray-500 line-through">Rp 28.000.000</span>
+                                </div>
+                                <button onclick="selectProduct('Gaming Laptop Ultra', 25000000)" class="futuristic-btn w-full">
+                                    Pesan Sekarang
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product 3 -->
+                        <div class="futuristic-card overflow-hidden animate-fade-in-up" style="animation-delay: 0.3s;">
+                            <div class="h-48 relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop" alt="Wireless Headphone Pro" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Wireless Headphone Pro</h3>
+                                <p class="text-gray-400 mb-4 text-sm">Headphone nirkabel dengan ANC, Hi-Res Audio, dan battery life 40 jam</p>
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="text-2xl font-bold text-blue-400">Rp 3.500.000</span>
+                                    <span class="text-sm text-gray-500 line-through">Rp 4.000.000</span>
+                                </div>
+                                <button onclick="selectProduct('Wireless Headphone Pro', 3500000)" class="futuristic-btn w-full">
+                                    Pesan Sekarang
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product 4 -->
+                        <div class="futuristic-card overflow-hidden animate-fade-in-up" style="animation-delay: 0.4s;">
+                            <div class="h-48 relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400&h=300&fit=crop" alt="Smart TV OLED 65 inch" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                                <div class="absolute top-2 right-2 bg-yellow-500 text-black px-2 py-1 rounded-full text-xs font-bold animate-pulse">
+                                    SALE
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Smart TV OLED 65"</h3>
+                                <p class="text-gray-400 mb-4 text-sm">Smart TV OLED 65" dengan 4K HDR, Dolby Vision, dan AI upscaling</p>
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="text-2xl font-bold text-blue-400">Rp 18.000.000</span>
+                                    <span class="text-sm text-gray-500 line-through">Rp 22.000.000</span>
+                                </div>
+                                <button onclick="selectProduct('Smart TV OLED 65 inch', 18000000)" class="futuristic-btn w-full">
+                                    Pesan Sekarang
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product 5 -->
+                        <div class="futuristic-card overflow-hidden animate-fade-in-up" style="animation-delay: 0.5s;">
+                            <div class="h-48 relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=300&fit=crop" alt="Smartwatch Health Pro" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Smartwatch Health Pro</h3>
+                                <p class="text-gray-400 mb-4 text-sm">Smartwatch dengan monitoring kesehatan lengkap, GPS, dan battery 7 hari</p>
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="text-2xl font-bold text-blue-400">Rp 5.500.000</span>
+                                    <span class="text-sm text-gray-500 line-through">Rp 6.500.000</span>
+                                </div>
+                                <button onclick="selectProduct('Smartwatch Health Pro', 5500000)" class="futuristic-btn w-full">
+                                    Pesan Sekarang
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product 6 -->
+                        <div class="futuristic-card overflow-hidden animate-fade-in-up" style="animation-delay: 0.6s;">
+                            <div class="h-48 relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=400&h=300&fit=crop" alt="Mirrorless Camera 4K" class="w-full h-full object-cover" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Mirrorless Camera 4K</h3>
+                                <p class="text-gray-400 mb-4 text-sm">Kamera mirrorless 4K dengan sensor full-frame, stabilizer, dan lensa kit</p>
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="text-2xl font-bold text-blue-400">Rp 22.000.000</span>
+                                    <span class="text-sm text-gray-500 line-through">Rp 25.000.000</span>
+                                </div>
+                                <button onclick="selectProduct('Mirrorless Camera 4K', 22000000)" class="futuristic-btn w-full">
+                                    Pesan Sekarang
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Profil -->
+        <div class="slide futuristic-bg" id="slide-3">
+            <div class="min-h-screen pt-20 pb-10">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16 animate-fade-in-up">
+                        <h2 class="text-5xl font-bold mb-6 neon-text">Tentang Kami</h2>
+                        <p class="text-xl opacity-90">Pionir teknologi masa depan sejak 2015</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <!-- Company Info -->
+                        <div class="animate-slide-in-left">
+                            <div class="futuristic-card p-8">
+                                <h3 class="text-3xl font-bold mb-6 text-blue-400">Visi & Misi</h3>
+                                <div class="space-y-6">
+                                    <div>
+                                        <h4 class="text-xl font-semibold mb-3 text-purple-400">🎯 Visi</h4>
+                                        <p class="text-gray-300">Menjadi perusahaan teknologi terdepan yang menghadirkan inovasi untuk meningkatkan kualitas hidup masyarakat Indonesia.</p>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-semibold mb-3 text-purple-400">🚀 Misi</h4>
+                                        <ul class="text-gray-300 space-y-2">
+                                            <li>• Menyediakan produk teknologi berkualitas tinggi</li>
+                                            <li>• Memberikan layanan pelanggan terbaik</li>
+                                            <li>• Mendukung transformasi digital Indonesia</li>
+                                            <li>• Menciptakan ekosistem teknologi yang berkelanjutan</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stats -->
+                        <div class="animate-slide-in-right">
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="futuristic-card p-6 text-center animate-pulse-custom">
+                                    <div class="text-4xl mb-4">👥</div>
+                                    <div class="text-3xl font-bold text-blue-400 mb-2">50K+</div>
+                                    <div class="text-gray-400">Pelanggan Puas</div>
+                                </div>
+                                <div class="futuristic-card p-6 text-center animate-pulse-custom" style="animation-delay: -0.5s;">
+                                    <div class="text-4xl mb-4">🏆</div>
+                                    <div class="text-3xl font-bold text-blue-400 mb-2">100+</div>
+                                    <div class="text-gray-400">Penghargaan</div>
+                                </div>
+                                <div class="futuristic-card p-6 text-center animate-pulse-custom" style="animation-delay: -1s;">
+                                    <div class="text-4xl mb-4">🌟</div>
+                                    <div class="text-3xl font-bold text-blue-400 mb-2">9</div>
+                                    <div class="text-gray-400">Tahun Pengalaman</div>
+                                </div>
+                                <div class="futuristic-card p-6 text-center animate-pulse-custom" style="animation-delay: -1.5s;">
+                                    <div class="text-4xl mb-4">🔧</div>
+                                    <div class="text-3xl font-bold text-blue-400 mb-2">500+</div>
+                                    <div class="text-gray-400">Produk Tersedia</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Team Section -->
+                    <div class="mt-20">
+                        <h3 class="text-3xl font-bold text-center mb-12 neon-text">Tim Ahli Kami</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div class="futuristic-card p-6 text-center animate-fade-in-up" style="animation-delay: 0.1s;">
+                                <div class="w-24 h-24 rounded-full glass-effect mx-auto mb-4 flex items-center justify-center text-4xl animate-float">
+                                    👨‍💼
+                                </div>
+                                <h4 class="text-xl font-bold mb-2">Ikmal Teknologi</h4>
+                                <p class="text-blue-400 mb-3">CEO & Founder</p>
+                                <p class="text-gray-400 text-sm">15+ tahun pengalaman di industri teknologi</p>
+                            </div>
+                            <div class="futuristic-card p-6 text-center animate-fade-in-up" style="animation-delay: 0.2s;">
+                                <div class="w-24 h-24 rounded-full glass-effect mx-auto mb-4 flex items-center justify-center text-4xl animate-float" style="animation-delay: -1s;">
+                                    👩‍💻
+                                </div>
+                                <h4 class="text-xl font-bold mb-2">Dewi Harddisk</h4>
+                                <p class="text-blue-400 mb-3">CTO</p>
+                                <p class="text-gray-400 text-sm">Expert dalam AI dan Machine Learning</p>
+                            </div>
+                            <div class="futuristic-card p-6 text-center animate-fade-in-up" style="animation-delay: 0.3s;">
+                                <div class="w-24 h-24 rounded-full glass-effect mx-auto mb-4 flex items-center justify-center text-4xl animate-float" style="animation-delay: -2s;">
+                                    👨‍🔧
+                                </div>
+                                <h4 class="text-xl font-bold mb-2">Keysia Motherboard</h4>
+                                <p class="text-blue-400 mb-3">Head of Engineering</p>
+                                <p class="text-gray-400 text-sm">Spesialis hardware dan sistem embedded</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Pemesanan -->
+        <div class="slide futuristic-bg" id="slide-4">
+            <div class="min-h-screen pt-20 pb-10">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16 animate-fade-in-up">
+                        <h2 class="text-5xl font-bold mb-6 neon-text">Pemesanan</h2>
+                        <p class="text-xl opacity-90">Lengkapi data untuk melanjutkan pemesanan</p>
+                    </div>
+                    
+                    <div class="futuristic-card p-8 animate-fade-in-up">
+                        <form id="orderForm">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <!-- Personal Info -->
+                                <div class="space-y-6">
+                                    <h3 class="text-2xl font-bold text-blue-400 mb-4">Informasi Pribadi</h3>
+                                    
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2">Nama Lengkap *</label>
+                                        <input type="text" id="fullName" required class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white">
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2">Email *</label>
+                                        <input type="email" id="email" required class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white">
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2">Nomor Telepon *</label>
+                                        <input type="tel" id="phone" required class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white">
+                                    </div>
+                                </div>
+
+                                <!-- Order Info -->
+                                <div class="space-y-6">
+                                    <h3 class="text-2xl font-bold text-blue-400 mb-4">Detail Pesanan</h3>
+                                    
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2">Produk *</label>
+                                        <select id="product" required class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white">
+                                            <option value="">Pilih Produk</option>
+                                            <option value="Smartphone AI Pro">Smartphone AI Pro - Rp 12.500.000</option>
+                                            <option value="Gaming Laptop Ultra">Gaming Laptop Ultra - Rp 25.000.000</option>
+                                            <option value="Wireless Headphone Pro">Wireless Headphone Pro - Rp 3.500.000</option>
+                                            <option value="Smart TV OLED 65 inch">Smart TV OLED 65" - Rp 18.000.000</option>
+                                            <option value="Smartwatch Health Pro">Smartwatch Health Pro - Rp 5.500.000</option>
+                                            <option value="Mirrorless Camera 4K">Mirrorless Camera 4K - Rp 22.000.000</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2">Jumlah *</label>
+                                        <input type="number" id="quantity" min="1" value="1" required class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white">
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2">Metode Pembayaran *</label>
+                                        <select id="paymentMethod" required class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white">
+                                            <option value="">Pilih Metode</option>
+                                            <option value="Transfer Bank">Transfer Bank</option>
+                                            <option value="E-Wallet">E-Wallet (OVO/GoPay/Dana)</option>
+                                            <option value="Kartu Kredit">Kartu Kredit</option>
+                                            <option value="Cicilan 0%">Cicilan 0% (12 bulan)</option>
+                                            <option value="COD">Bayar di Tempat (COD)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Address -->
+                            <div class="mt-6">
+                                <label class="block text-sm font-medium mb-2">Alamat Lengkap *</label>
+                                <textarea id="address" rows="4" required class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white" placeholder="Masukkan alamat lengkap untuk pengiriman"></textarea>
+                            </div>
+
+                            <!-- Notes -->
+                            <div class="mt-6">
+                                <label class="block text-sm font-medium mb-2">Catatan Tambahan</label>
+                                <textarea id="notes" rows="3" class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white" placeholder="Catatan khusus untuk pesanan (opsional)"></textarea>
+                            </div>
+
+                            <!-- Total -->
+                            <div class="mt-8 p-6 glass-effect rounded-lg">
+                                <div class="flex justify-between items-center text-2xl font-bold">
+                                    <span>Total Harga:</span>
+                                    <span id="totalPrice" class="text-blue-400 neon-text">Rp 0</span>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="mt-8">
+                                <button type="submit" class="futuristic-btn w-full text-xl py-4 animate-glow">
+                                    <span id="submitText">🚀 Kirim Pesanan</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Kontak -->
+        <div class="slide futuristic-bg" id="slide-5">
+            <div class="min-h-screen pt-20 pb-10">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16 animate-fade-in-up">
+                        <h2 class="text-5xl font-bold mb-6 neon-text">Hubungi Kami</h2>
+                        <p class="text-xl opacity-90">Kami siap membantu Anda 24/7</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        <!-- Contact Info -->
+                        <div class="space-y-8 animate-slide-in-left">
+                            <div class="futuristic-card p-8">
+                                <h3 class="text-2xl font-bold mb-6 text-blue-400">Informasi Kontak</h3>
+                                <div class="space-y-6">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-12 h-12 rounded-full glass-effect flex items-center justify-center text-2xl animate-float">
+                                            📞
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold">Telepon</h4>
+                                            <p class="text-gray-400">+62 812-3456-7890</p>
+                                            <p class="text-gray-400">+62 811-2345-6789</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-12 h-12 rounded-full glass-effect flex items-center justify-center text-2xl animate-float" style="animation-delay: -1s;">
+                                            ✉️
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold">Email</h4>
+                                            <p class="text-gray-400">info@sukamaju.tech</p>
+                                            <p class="text-gray-400">support@sukamaju.tech</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-12 h-12 rounded-full glass-effect flex items-center justify-center text-2xl animate-float" style="animation-delay: -2s;">
+                                            📍
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold">Alamat</h4>
+                                            <p class="text-gray-400">Jl. Teknologi Masa Depan No.11</p>
+                                            <p class="text-gray-400">Makassar, Sulawesi Selatan 90231</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-12 h-12 rounded-full glass-effect flex items-center justify-center text-2xl animate-float" style="animation-delay: -3s;">
+                                            🕒
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold">Jam Operasional</h4>
+                                            <p class="text-gray-400">Senin - Jumat: 08:00 - 20:00</p>
+                                            <p class="text-gray-400">Sabtu - Minggu: 09:00 - 17:00</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Social Media -->
+                            <div class="futuristic-card p-8">
+                                <h3 class="text-2xl font-bold mb-6 text-blue-400">Media Sosial</h3>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <button class="futuristic-btn flex items-center justify-center space-x-2">
+                                        <span>📘</span>
+                                        <span>Facebook</span>
+                                    </button>
+                                    <button class="futuristic-btn flex items-center justify-center space-x-2">
+                                        <span>📷</span>
+                                        <span>Instagram</span>
+                                    </button>
+                                    <button class="futuristic-btn flex items-center justify-center space-x-2">
+                                        <span>🐦</span>
+                                        <span>Twitter</span>
+                                    </button>
+                                    <button class="futuristic-btn flex items-center justify-center space-x-2">
+                                        <span>💼</span>
+                                        <span>LinkedIn</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Form -->
+                        <div class="animate-slide-in-right">
+                            <div class="futuristic-card p-8">
+                                <h3 class="text-2xl font-bold mb-6 text-blue-400">Kirim Pesan</h3>
+                                <form class="space-y-6">
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2">Nama *</label>
+                                        <input type="text" required class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white">
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2">Email *</label>
+                                        <input type="email" required class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white">
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2">Subjek *</label>
+                                        <select required class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white">
+                                            <option value="">Pilih Subjek</option>
+                                            <option value="Pertanyaan Produk">Pertanyaan Produk</option>
+                                            <option value="Keluhan Layanan">Keluhan Layanan</option>
+                                            <option value="Kerjasama Bisnis">Kerjasama Bisnis</option>
+                                            <option value="Lainnya">Lainnya</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2">Pesan *</label>
+                                        <textarea rows="5" required class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white" placeholder="Tulis pesan Anda di sini..."></textarea>
+                                    </div>
+                                    
+                                    <button type="submit" class="futuristic-btn w-full text-lg py-3 animate-glow">
+                                        🚀 Kirim Pesan
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="mt-20 text-center">
+                        <div class="futuristic-card p-8">
+                            <p class="text-gray-400 mb-4">&copy; 2024 Suka Maju Technology. Semua hak dilindungi.</p>
+                            <p class="text-sm text-gray-500">Menghadirkan teknologi masa depan untuk Indonesia yang lebih maju</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Product prices
+        const productPrices = {
+            'Smartphone AI Pro': 12500000,
+            'Gaming Laptop Ultra': 25000000,
+            'Wireless Headphone Pro': 3500000,
+            'Smart TV OLED 65 inch': 18000000,
+            'Smartwatch Health Pro': 5500000,
+            'Mirrorless Camera 4K': 22000000
+        };
+
+        // Slide system variables
+        let currentSlide = 0;
+        const totalSlides = 6;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgressBar();
+            updateNavigation();
+            
+            // Event listeners
+            document.getElementById('product').addEventListener('change', updateTotalPrice);
+            document.getElementById('quantity').addEventListener('input', updateTotalPrice);
+            document.getElementById('orderForm').addEventListener('submit', handleOrderSubmit);
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    nextSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    previousSlide();
+                }
+            });
+        });
+
+        // Navigation functions
+        function goToSlide(slideIndex) {
+            if (slideIndex >= 0 && slideIndex < totalSlides) {
+                currentSlide = slideIndex;
+                updateSlideDisplay();
+                updateProgressBar();
+                updateNavigation();
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlideDisplay();
+                updateProgressBar();
+                updateNavigation();
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlideDisplay();
+                updateProgressBar();
+                updateNavigation();
+            }
+        }
+
+        function updateSlideDisplay() {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active', 'prev');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                } else if (index < currentSlide) {
+                    slide.classList.add('prev');
+                }
+            });
+        }
+
+        function updateProgressBar() {
+            const progressFill = document.getElementById('progressFill');
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            progressFill.style.width = progress + '%';
+        }
+
+        function updateNavigation() {
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach((item, index) => {
+                item.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        // Product selection
+        function selectProduct(productName, price) {
+            document.getElementById('product').value = productName;
+            updateTotalPrice();
+            goToSlide(4); // Go to order slide
+        }
+
+        // Update total price
+        function updateTotalPrice() {
+            const productSelect = document.getElementById('product');
+            const quantityInput = document.getElementById('quantity');
+            const totalPriceElement = document.getElementById('totalPrice');
+            
+            const selectedProduct = productSelect.value;
+            const quantity = parseInt(quantityInput.value) || 1;
+            
+            if (selectedProduct && productPrices[selectedProduct]) {
+                const total = productPrices[selectedProduct] * quantity;
+                totalPriceElement.textContent = 'Rp ' + total.toLocaleString('id-ID');
+            } else {
+                totalPriceElement.textContent = 'Rp 0';
+            }
+        }
+
+        // Handle order submission
+        function handleOrderSubmit(e) {
+            e.preventDefault();
+            
+            const submitText = document.getElementById('submitText');
+            const originalText = submitText.textContent;
+            
+            // Show loading
+            submitText.textContent = '⏳ Mengirim...';
+            
+            // Simulate order processing
+            setTimeout(() => {
+                alert('🎉 Pesanan berhasil dikirim! Tim kami akan menghubungi Anda segera.');
+                submitText.textContent = originalText;
+                
+                // Reset form
+                document.getElementById('orderForm').reset();
+                updateTotalPrice();
+                
+                // Go to contact slide
+                goToSlide(5);
+            }, 2000);
+        }
+
+        // Add smooth scrolling and animations
+        function addScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            document.querySelectorAll('.animate-fade-in-up, .animate-slide-in-left, .animate-slide-in-right').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Initialize animations
+        addScrollAnimations();
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9868b70192dcdfb7',t:'MTc1OTExOTkwOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
